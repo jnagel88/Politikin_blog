@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Politikin101</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="/">Politikin 101</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <!-- <li ><a href="/index">Home</a></li> -->
+		      <li class="<%= 'active' if params[:controller] == 'posts' %>"><a href="/posts">All Posts</a></li>
+		      <li class="<%= 'active' if params[:controller] == 'comments' %>"><a href="/comments">all comments</a></li>
+		      <li class="<%= 'active' if params[:controller] == 'color picker' %>"><a href="/color">Color Picker</a></li>
+		    </ul>
+		    
+		  <div class="container">
+			  <div class="pull-right">
+			    <% if user_signed_in? %>
+			      <span style="color: gray">Welcome, <%= current_user.username %>!</span> 
+			    
+			      <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %> 
+			      <%= link_to "Sign Out", destroy_user_session_path, method: :delete, 
+			      class: "btn btn-danger" %>
+			    <% end %>
+			  </div>
+		</div>
+		    
+		   
+		  </div>
+		</nav>
+		
+	
+
+		<div class='container'>
+		 <%= yield %>
+		</div>
+
+	<!--<footer class="sticky-bottom">-->
+	<!--	<div class="panel-footer fixed-bottom">-->
+	<!--	footer	-->
+	<!--	</div>-->
+	<!--</footer>-->
+
+  </body>
+</html>
